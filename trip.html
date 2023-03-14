@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ManageYourTrip</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form">
+        <div class="NameInput">
+            <p class="formfont">What your travel Name?</p>
+            <form action="">
+                <label for="tripname">:</label>
+                <input type="text" name="tripname" id="tripname">
+                <p id="outputname"></p>
+            </form>
+        </div>
+        
+        <div class="dateform">
+            <p class="formfont">What's your date?</p>
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date">
+
+            <label for="end-date">End Date:</label>
+            <input type="date" id="end-date">
+
+            <ul id="output"></ul>
+        </div>
+
+        <div class="box">
+            <p class="formfont">Art</p>
+            <div class="rating" id="style1">
+                <input type="radio" name="ratingArt" id="ratingArt5" value="5"><label for="ratingArt5">5</label>
+                <input type="radio" name="ratingArt" id="ratingArt4" value="4"><label for="ratingArt4">4</label>
+                <input type="radio" name="ratingArt" id="ratingArt3" value="3"><label for="ratingArt3">3</label>
+                <input type="radio" name="ratingArt" id="ratingArt2" value="2"><label for="ratingArt2">2</label>
+                <input type="radio" name="ratingArt" id="ratingArt1" value="1"><label for="ratingArt1">1</label>
+            </div>
+            <p id="outputRatingArt"></p>
+        </div>
+
+        <div class="box">
+            <p class="formfont">History</p>
+            <div class="rating" id="style1">
+                <input type="radio" name="ratingHistory" id="rateHistory5" value="5"><label for="rateHistory5">5</label>
+                <input type="radio" name="ratingHistory" id="rateHistory4" value="4"><label for="rateHistory4">4</label>
+                <input type="radio" name="ratingHistory" id="rateHistory3" value="3"><label for="rateHistory3">3</label>
+                <input type="radio" name="ratingHistory" id="rateHistory2" value="2"><label for="rateHistory2">2</label>
+                <input type="radio" name="ratingHistory" id="rateHistory1" value="1"><label for="rateHistory1">1</label>
+            </div>
+            <p id="outputRatingHistory"></p>
+        </div>
+
+        <div class="box">
+            <p class="formfont">Nature</p>
+            <div class="rating" id="style1">
+                <input type="radio" name="ratingNature" id="rateNature5" value="5"><label for="rateNature5">5</label>
+                <input type="radio" name="ratingNature" id="rateNature4" value="4"><label for="rateNature4">4</label>
+                <input type="radio" name="ratingNature" id="rateNature3" value="3"><label for="rateNature3">3</label>
+                <input type="radio" name="ratingNature" id="rateNature2" value="2"><label for="rateNature2">2</label>
+                <input type="radio" name="ratingNature" id="rateNature1" value="1"><label for="rateNature1">1</label>
+            </div>
+            <p id="outputRatingNature"></p>
+        </div>
+
+        <div class="box">
+            <p class="formfont">Shopping</p>
+            <div class="rating" id="style1">
+                <input type="radio" name="ratingShopping" id="rateShopping5" value="5"><label for="rateShopping5">5</label>
+                <input type="radio" name="ratingShopping" id="rateShopping4" value="4"><label for="rateShopping4">4</label>
+                <input type="radio" name="ratingShopping" id="rateShopping3" value="3"><label for="rateShopping3">3</label>
+                <input type="radio" name="ratingShopping" id="rateShopping2" value="2"><label for="rateShopping2">2</label>
+                <input type="radio" name="ratingShopping" id="rateShopping1" value="1"><label for="rateShopping1">1</label>
+            </div>
+            <p id="outputRatingShopping"></p>
+        </div>
+
+        <div class="submitbutton">
+            <button onclick="submitFunction()">submit</button>
+        </div>
+    </div>
+
+    <div id="resultContainer"></div>
+</body>
+</html>
