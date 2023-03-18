@@ -26,6 +26,7 @@ window.initMap = initMap;
 var NewUrl = sessionStorage.getItem("NewUrl");
 var Day = sessionStorage.getItem("Day");
 var PalcePerDay = sessionStorage.getItem("PalcePerDay");
+var StartDay = sessionStorage.getItem("StartDay");
 console.log(NewUrl);
 display(NewUrl)
 
@@ -58,6 +59,13 @@ let waypoints = [];
         boxPlace.id = `boxPlace${i}`;
         document.body.appendChild(boxPlace);
 
+        var DateDisplaying = document.createElement("p");
+        var date = new Date(StartDay)
+        var dateString = millisecondsToDate(date); // call the function with the Date object
+        DateDisplaying.textContent = dateString;
+        DateDisplaying.className = "DateText";
+        boxPlace.appendChild(DateDisplaying);
+
         var valButton = document.createElement("button");
         valButton.textContent =  `See Day${i} Plan!`;
         valButton.id = `valButton${i}`;
@@ -71,8 +79,11 @@ let waypoints = [];
         boxPlace.appendChild(valButton);
 
         for(let j=0 ;j < PalcePerDay ;j++){
+          var time = new Date(result[i][j].time.time_start)
+          var timeString = millisecondsToTime(time); // call the function with the Date object
+          console.log(timeString); // 00:00 Saturday 18/March/2023
           var valText = document.createTextNode(`${result[i][j].name} \n`);
-          var valSpan = document.createElement("span");
+          var valSpan = document.createElement("p");
           valSpan.id = "valspan";
           valSpan.appendChild(valText);
           boxPlace.appendChild(valSpan);
@@ -155,7 +166,27 @@ let waypoints = [];
       }
     });
   }
-  // function setMapOnAll(map) {
+  function millisecondsToTime(time) {
+    var hours = String(time.getHours()).padStart(2, '0');
+    var minutes = String(time.getMinutes()).padStart(2, '0');
+    var day = time.toLocaleString('en-US', {weekday: 'long'});
+    var month = time.toLocaleString('en-US', {month: 'long'});
+    var year = time.getFullYear();
+  
+    return hours + ':' + minutes;
+  }
+  function millisecondsToDate(date) {
+    var hours = String(date.getHours()).padStart(2, '0');
+    var minutes = String(date.getMinutes()).padStart(2, '0');
+    var day = date.toLocaleString('en-US', {weekday: 'long'});
+    var month = date.toLocaleString('en-US', {month: 'long'});
+    var year = date.getFullYear();
+  
+    return day + ' ' + date.getDate() + ' ' + month + ' ' + year;
+  }
+  
+  // Test the function with some examples
+  // Output: 00:01.234
   //   for (let i = 0; i < markers.length; i++) {
   //     markers[i].setMap(map);
   //   }

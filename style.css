@@ -164,6 +164,8 @@
 #valspan{
     color: white;
     margin: 30px;
+    font-size: 20px;
+    font-family: 'Noto Sans Thai', sans-serif;
 }
 .valButton{
     width: 170px;
@@ -181,4 +183,10 @@
     top: 80%;
     left: 80%;
     bottom: auto;
+}
+.DateText{
+    color: white;
+    margin: 30px;
+    font-size: 20px;
+    font-family: 'Noto Sans Thai', sans-serif;
 }

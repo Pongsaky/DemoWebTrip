@@ -34,7 +34,8 @@ function submitFunction(){
     const startDate = new Date(document.getElementById("start-date").value);
     const endDate = new Date(document.getElementById("end-date").value);
     const oneDay = 24 * 60 * 60 * 1000;
-
+    let startMilliTime = startDate.getTime()
+    console.log(startMilliTime);
     let currentDate = new Date(startDate);
     const dates = [];
 
@@ -89,11 +90,13 @@ function submitFunction(){
     params.set('shopping_level',ShoppingVal);
     params.set('placePerDay',SpeedVal);
     params.set('day',t);
+    params.set('milli_start_time',startMilliTime);
     newUrl = `https://trip-recommendation.onrender.com/get_planning/?${params.toString()}`;
     console.log(newUrl);
     sessionStorage.setItem("NewUrl",newUrl);
     sessionStorage.setItem("Day",t);
     sessionStorage.setItem("PalcePerDay",SpeedVal);
+    sessionStorage.setItem("StartDay",startMilliTime);
     window.open('displaying.html','_blank')
   } 
 
