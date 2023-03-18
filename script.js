@@ -93,6 +93,20 @@ function submitFunction(){
     params.set('milli_start_time',startMilliTime);
     newUrl = `https://trip-recommendation.onrender.com/get_planning/?${params.toString()}`;
     console.log(newUrl);
+
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow",
+      };
+
+    fetch(newUrl, requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+        console.log(result);
+        sessionStorage.setItem("Result", JSON.stringify(result));
+    })
+    .catch((error) => console.log("error", error));
+
     sessionStorage.setItem("NewUrl",newUrl);
     sessionStorage.setItem("Day",t);
     sessionStorage.setItem("PalcePerDay",SpeedVal);
