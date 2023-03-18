@@ -4,9 +4,9 @@ function SpeedDisplaying(){
     SpeedVal.textContent = SpeedInput?.value;
     if(SpeedVal.textContent == 1){
         document.getElementById('SpeedDisplaying').innerHTML = "Slow";
-    }else if(SpeedVal.textContent == 2){
-        document.getElementById('SpeedDisplaying').innerHTML = "Medium";
     }else if(SpeedVal.textContent == 3){
+        document.getElementById('SpeedDisplaying').innerHTML = "Medium";
+    }else if(SpeedVal.textContent == 5){
         document.getElementById('SpeedDisplaying').innerHTML = "Fast";
     }
 }
@@ -45,8 +45,7 @@ function submitFunction(){
       dates.push(new Date(currentDate));
       currentDate.setTime(currentDate.getTime() + oneDay);
     }
-    const dateList = dates.map((date) => `<li>${date.toDateString()}</li>`).join("");
-    document.getElementById("output").innerHTML = dateList;
+    // document.getElementById("output").innerHTML = dateList;
 
     //Displaying style
 
@@ -93,6 +92,20 @@ function submitFunction(){
     params.set('milli_start_time',startMilliTime);
     newUrl = `https://trip-recommendation.onrender.com/get_planning/?${params.toString()}`;
     console.log(newUrl);
+
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow",
+      };
+
+    fetch(newUrl, requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+        console.log(result);
+        sessionStorage.setItem("Result", JSON.stringify(result));
+    })
+    .catch((error) => console.log("error", error));
+
     sessionStorage.setItem("NewUrl",newUrl);
     sessionStorage.setItem("Day",t);
     sessionStorage.setItem("PalcePerDay",SpeedVal);

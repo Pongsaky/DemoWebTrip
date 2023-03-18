@@ -102,8 +102,10 @@
 #map{
     height: 500px;
     width: 100%;
-    position: relative;
-    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 #info{
     width: 70%;
@@ -161,12 +163,6 @@
     margin-Left : auto;
     margin-Right : auto;
 }
-#valspan{
-    color: white;
-    margin: 30px;
-    font-size: 20px;
-    font-family: 'Noto Sans Thai', sans-serif;
-}
 .valButton{
     width: 170px;
     height: 40px;
@@ -180,13 +176,57 @@
     font-weight: 600;
     text-decoration: none;
     position: relative;
-    top: 80%;
+    top: 55%;
     left: 80%;
     bottom: auto;
 }
 .DateText{
+    position: relative;
+    top: 30px;
     color: white;
-    margin: 30px;
+    margin-top: 30px;
+    margin-left: 30px;
+    font-size: 40px;
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+#placeELement{
+    position: relative;
+    bottom: 30px;
+    width: 600px;
+}
+#placeTime{
+    position: relative;
+    left: 30px;
+    color: orange;
+    font-size: 25px;
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+#placeText{
+    position: relative;
+    left: 70px;
+    color: white;
     font-size: 20px;
     font-family: 'Noto Sans Thai', sans-serif;
+}
+#placeLine{
+    position: relative;
+    bottom: 20px;
+    margin-left: 80px;
+    top: 20px;
+
+}
+#placeLineCircle{
+    position: relative;
+    background-color: orange;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    top: 20px;
+}
+#placeLineStr{
+    position: relative;
+    background-color: orange;
+    width: 2px;
+    height: 50px;
+    left: 3px;
 }
