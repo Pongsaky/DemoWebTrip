@@ -43,7 +43,11 @@ fetch(NewUrl, requestOptions)
 
     })
     .catch(error => console.log('error', error));
-    
+
+let loca=[];
+let markers =[];
+let waypoints = [];
+
     function createPlaceBox(result){
       console.log("fuction working");
       console.log(Day);
@@ -58,15 +62,15 @@ fetch(NewUrl, requestOptions)
         valButton.textContent =  `See Day${i} Plan!`;
         valButton.id = `valButton${i}`;
         valButton.className = "valButton";
+        //ButtonShowMarker
         valButton.addEventListener("click", function(){
-          console.log(result[i]);
-          appendData(result[i])
+          ShowMakers(result[i])
+          // addWaypoints(result[i])
+          calculateRoute(result[i])
         });
         boxPlace.appendChild(valButton);
 
         for(let j=0 ;j < PalcePerDay ;j++){
-          console.log(j);
-          console.log(result[i][j].name);
           var valText = document.createTextNode(`${result[i][j].name} \n`);
           var valSpan = document.createElement("span");
           valSpan.id = "valspan";
@@ -75,31 +79,23 @@ fetch(NewUrl, requestOptions)
         }
       }
     }
-
-    function showMaker(){
-
-    }
-
-    function appendData(result){
-      let loca=[];
-      let markers =[];
-      const mainContainer = document.getElementById("resultContainer");
+    function ShowMakers(result){
+      for (let j = 0; j < markers.length; j++) {
+        markers[j].setMap(null);
+      }
       for(let i=0 ; i < Object.keys(result).length ; i++){
-        console.log(result[i].geometry.lat,result[i].geometry.lon);
         loca[i]= new google.maps.LatLng(result[i].geometry.lat,result[i].geometry.lon);
 
         var marker = new google.maps.Marker({
           position: loca[i],
           map: map,
-          title: result[i].name
+          title: result[i].name,
+          visible: true
         });
-    
-        if (i !== 0 && i !== Object.keys(result).length - 1) {
-          // This condition ensures that only the markers that are not the origin or destination are added to the markers array
+
           markers.push(marker);
-        }
     
-        marker.addListener('click', function() {
+          marker.addListener('click', function() {
   
           $("#myModal").modal();
           var title = '<h2>' + this.title + '</h2>';
@@ -108,10 +104,68 @@ fetch(NewUrl, requestOptions)
           
           document.getElementById('modal-title').innerHTML = title;
           document.getElementById('modal-body').innerHTML = content;
-          
         });
+        // waypoints.push({
+        //     location: loca[i],
+        //     stopover: true,
+        // });
     }
   }
+  // function addWaypoints(result) {
+  //   for (let j = 0; j < waypoints.length; j++) {
+  //     waypoints[j].setMap(null);
+  //   }
+  //   for (var i = 0; i <= Object.keys(result).length - 1; i++) {
+  //     waypoints.push({
+  //       location: loca[i],
+  //       stopover: true
+  //     });
+  //   }
+  // }
+
+  function calculateRoute(result) {
+    for (var i = 0; i <= Object.keys(result).length - 1; i++) {
+      waypoints.push({
+        location: loca[i],
+        stopover: true
+      });
+    }
+    directionsService.route({
+      origin: loca[0],
+      destination: loca[loca.length - 1],
+      waypoints: waypoints,
+      travelMode: 'DRIVING'
+    }, function(response, status) {
+      if (status === 'OK') {
+        directionsRenderer.setDirections(response);
+  
+        // This loop removes the markers that are part of the route
+        var routeLegs = response.routes[0].legs;
+        for (var i = 0; i < routeLegs.length; i++) {
+          var routeSteps = routeLegs[i].steps;
+          for (var j = 0; j < routeSteps.length; j++) {
+            var routeMarkers = routeSteps[j].markers;
+            if (routeMarkers) {
+              for (var k = 0; k < routeMarkers.length; k++) {
+                routeMarkers[k].setMap(null);
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+  // function setMapOnAll(map) {
+  //   for (let i = 0; i < markers.length; i++) {
+  //     markers[i].setMap(map);
+  //   }
+  // }
+  // function hideMarkers() {
+  //   setMapOnAll(null);
+  // }
+  // function showMarkers() {
+  //   setMapOnAll(map);
+  // }
   // var markers = [];
   // function infoMarkers(result){
   //   for(let i=0 ; i < Object.keys(result).length ; i++){
@@ -141,39 +195,12 @@ fetch(NewUrl, requestOptions)
   // function opennewtab(){
   //   window.open('displaying.html','_blank');
   // }
-  var waypoints = [];
-  function addWaypoints(result) {
-    for (var i = 1; i < Object.keys(result).length - 1; i++) {
-      waypoints.push({
-        location: loca[i],
-        stopover: true
-      });
-    }
-  }
-  function calculateRoute() {
-    directionsService.route({
-      origin: loca[0],
-      destination: loca[loca.length - 1],
-      waypoints: waypoints,
-      travelMode: 'DRIVING'
-    }, function(response, status) {
-      if (status === 'OK') {
-        directionsRenderer.setDirections(response);
-  
-        // This loop removes the markers that are part of the route
-        var routeLegs = response.routes[0].legs;
-        for (var i = 0; i < routeLegs.length; i++) {
-          var routeSteps = routeLegs[i].steps;
-          for (var j = 0; j < routeSteps.length; j++) {
-            var routeMarkers = routeSteps[j].markers;
-            if (routeMarkers) {
-              for (var k = 0; k < routeMarkers.length; k++) {
-                routeMarkers[k].setMap(null);
-              }
-            }
-          }
-        }
-      }
-    });
-  }
+  // function addWaypoints(result) {
+  //   for (var i = 0; i <= Object.keys(result).length - 1; i++) {
+  //     waypoints.push({
+  //       location: loca[i],
+  //       stopover: true
+  //     });
+  //   }
+  // }
 }

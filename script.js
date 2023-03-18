@@ -89,7 +89,7 @@ function submitFunction(){
     params.set('shopping_level',ShoppingVal);
     params.set('placePerDay',SpeedVal);
     params.set('day',t);
-    newUrl = `https://trip-recommendation.onrender.com/get_planning/?art_level=2&history_level=1&nature_level=3&shopping_level=2&milli_start_time=1678939200000&placePerDay=2&day=4&timePerDay=9`;
+    newUrl = `https://trip-recommendation.onrender.com/get_planning/?${params.toString()}`;
     console.log(newUrl);
     sessionStorage.setItem("NewUrl",newUrl);
     sessionStorage.setItem("Day",t);
