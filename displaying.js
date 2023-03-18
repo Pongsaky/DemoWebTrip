@@ -69,7 +69,6 @@ function display() {
         // addWaypoints(result[i])
         calculateRoute(result[i]);
       });
-      boxPlace.appendChild(valButton);
 
       console.log(PalcePerDay);
 
@@ -119,6 +118,7 @@ function display() {
         // pText.appendChild(valText);
 
         boxPlace.appendChild(divplace);
+        boxPlace.appendChild(valButton);
       }
     }
   }
@@ -135,18 +135,25 @@ function display() {
         map: map,
         title: result[i].name,
         visible: true,
+        photo: result[i].photo[1]
       });
 
       markers.push(marker);
 
       marker.addListener("click", function () {
         $("#myModal").modal();
+        
         var title = "<h2>" + this.title + "</h2>";
-        var content = "<p>Lat: " + this.position.lat() + "</p>";
-        content += "<p>Lng: " + this.position.lng() + "</p>";
 
         document.getElementById("modal-title").innerHTML = title;
-        document.getElementById("modal-body").innerHTML = content;
+        var modal = document.getElementById("modal-body");
+        var img = document.createElement("img");
+
+        img.src = this.photo;
+        img.style.width = "200px";
+        img.style.height = "200px";
+
+        modal.appendChild(img);
       });
       // waypoints.push({
       //     location: loca[i],

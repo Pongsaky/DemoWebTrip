@@ -102,7 +102,8 @@
 #map{
     height: 500px;
     width: 100%;
-    position: fixed;
+    position: sticky;
+    display: block;
     top: 0;
     left: 0;
     z-index: 1;
@@ -156,7 +157,7 @@
   }
 .boxPlace{
     width: 1200px;
-    height : 400px;
+    height : auto;
     background-Color : #333;
     border-Radius : 20px;
     margin-Top : 40px;
@@ -176,8 +177,9 @@
     font-weight: 600;
     text-decoration: none;
     position: relative;
-    top: 55%;
+    margin-bottom: 40px;
     left: 80%;
+    bottom: 200px;
     bottom: auto;
 }
 .DateText{
@@ -186,13 +188,15 @@
     color: white;
     margin-top: 30px;
     margin-left: 30px;
-    font-size: 40px;
+    font-size: 35px;
     font-family: 'Noto Sans Thai', sans-serif;
 }
 #placeELement{
     position: relative;
     bottom: 30px;
     width: 600px;
+    top: 5px;
+    margin-bottom: 50px;
 }
 #placeTime{
     position: relative;
