@@ -99,19 +99,27 @@ function submitFunction(){
         redirect: "follow",
       };
 
-    fetch(newUrl, requestOptions)
-    .then((response) => response.json())
-    .then((result) => {
-        console.log(result);
-        sessionStorage.setItem("Result", JSON.stringify(result));
-    })
-    .catch((error) => console.log("error", error));
+    async function fetchAPI(newUrl) {
+        sessionStorage.clear();
+        await fetch(newUrl, requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+            console.log(result);
+            sessionStorage.setItem("Result", JSON.stringify(result));
+            console.log("Result send data finished!");
+        })
+        .catch((error) => console.log("error", error));
 
-    sessionStorage.setItem("NewUrl",newUrl);
-    sessionStorage.setItem("Day",t);
-    sessionStorage.setItem("PalcePerDay",SpeedVal);
-    sessionStorage.setItem("StartDay",startMilliTime);
-    window.open('displaying.html','_blank')
+        sessionStorage.setItem("NewUrl",newUrl);
+        sessionStorage.setItem("Day",t);
+        sessionStorage.setItem("PalcePerDay",SpeedVal);
+        sessionStorage.setItem("StartDay",startMilliTime);
+        window.open('displaying.html','_blank')
+        console.log("Open new window")
+    }
+    
+    fetchAPI(newUrl);
+    
   } 
 
 //     fetch(newUrl, requestOptions)
