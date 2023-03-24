@@ -150,8 +150,8 @@ function display() {
         var img = document.createElement("img");
 
         img.src = this.photo;
-        img.style.width = "200px";
-        img.style.height = "200px";
+        img.style.width = "100%";
+        img.style.height = "100%";
 
         modal.appendChild(img);
       });

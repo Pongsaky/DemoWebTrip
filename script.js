@@ -2,11 +2,11 @@ function SpeedDisplaying(){
     const SpeedVal = document.querySelector("#SpeedDisplaying");
     const SpeedInput = document.querySelector("#SpeedRange");
     SpeedVal.textContent = SpeedInput?.value;
-    if(SpeedVal.textContent == 1){
+    if(SpeedVal.textContent == 2){
         document.getElementById('SpeedDisplaying').innerHTML = "Slow";
     }else if(SpeedVal.textContent == 3){
         document.getElementById('SpeedDisplaying').innerHTML = "Medium";
-    }else if(SpeedVal.textContent == 5){
+    }else if(SpeedVal.textContent == 4){
         document.getElementById('SpeedDisplaying').innerHTML = "Fast";
     }
 }
