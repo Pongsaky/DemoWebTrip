@@ -146,14 +146,12 @@ function display() {
         var title = "<h2>" + this.title + "</h2>";
 
         document.getElementById("modal-title").innerHTML = title;
-        var modal = document.getElementById("modal-body");
-        var img = document.createElement("img");
+        var img = document.getElementById("img-source")
 
         img.src = this.photo;
         img.style.width = "100%";
         img.style.height = "100%";
 
-        modal.appendChild(img);
       });
       // waypoints.push({
       //     location: loca[i],
